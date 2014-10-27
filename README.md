@@ -52,3 +52,30 @@ C - "Etch-a-Sketch and Pong"
  This functionality was similar to an assignment we had done, so the only problem I ran into, was slowing the block down enough for its collisions and movements to be visible. In order to do this,  I had to add a delay_cycles () command to the beginning of the while loop. I played around with the amount to delay it by, and finally decided that 2000000 cycles produced a good result. 
 	
  I demonstrated B functionality to Capt Trimble on Thursday 23 OCT 14. 
+ 
+# A Functionality
+
+The A functionality wanted us to go a step further and actually create a pong game on the LCD screen. We needed a paddle that moved up and down one side of the display by using the buttons, and for the block to bounce off of the pong when it was hit. The game would end and reset if the pong hit the wall. 
+
+I started the same way as B functionaly, but creating a new source code file to make changes to. This functionality required some new definitions, ones for the up and down buttons as well as a new initalization for the char variable paddle collision. This code also required us to keep track of where the paddle was, which needed new unsigned char variables. 
+
+The code from B functionality was very useful. I added the if and else if statements at the beginning of the while loop to check for button pushes to move the paddle up and down. And I also had to add an else if statement towards the bottom of the while loop to check for a collision with the paddle. The check for a collision with the left screen changed a little because that would end the game, so I needed to set the velocities of the pong to zero, instead of having it bounce off like normal. 
+ 
+ To create the paddle, I drew two blocks, one on top of the other. I also needed to add a check at the bottom of the code to determine what to do it the pong collided with the paddle. 
+ 
+ I ran into a couple issues while testing. One was that I could not get the paddle to move down when the button was pressed. When stepping through, there was an issue inside the while loop, with the down button check. I had put ypaddle >= 5, when it should have been ypaddle <= 5. That was able to fix that issue.
+ 
+ The next issue I had was that the pong would not stop bouncing when it collided with the left side. This was more of a logic issue, but all I needed to do was add the two lines to the else if statement to make the velocities of the pong zero. That is shown below:
+ 
+ 			else if (leftCollide(x, xvel))					
+			{
+				x = 4;
+				y = 4;
+				xvel = 0;
+				yvel = 0;
+			}
+			
+
+I demonstrated A Functionality to Capt Trimble on Thursday, 23 OCT 14.
+
+Documentation: C2C Ian Goodbody assisted me with this lab, by helping step me through the proper logic for each functionality to ensure that I fully understood what the code should accomplish. As well as he helped me debug my code when I was running into issues during testing. C2C Sean Bapty also assisted me by pointing out that creating the paddle for A functionality would simply be two blocks placed together. 
