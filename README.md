@@ -42,3 +42,12 @@ drawBlock:
  When I tested this code, it worked in the sense that it moved the block around the screen, and changed the block from beign filled in, to being clear based on the pressing of the auxiliary button. The one thing that I missed, that Capt Trimble pointed out when I first demoed to her, was that it did not the screen did not fill in as the block was drawn, like an etch-a-sketch. This was an easy fix, all I had to do was comment out the cleardisplay() command within the while loop. Once I fixed that, I was able to complete the required functionality. I demonstrated the required functionality for Capt Trimble on Thursday, 23 OCT 2014. 
  
 # B Functionality
+	B functionality wanted us to create a bouncing block on our LCD screens. The block would move around the screen with no more than 8 pixels per jump, and would bounce off of the walls when they collided. It also wanted a delay between the blocks movements so it was easily visible. 
+	
+	I decided to simply copy all of the lab4.c code into a new source file and make changes there, in order to save the correct code for the required functionality. I neede to add some definition statements first. I defined the screen width and height along with True and False being equated with 1 and 0. I also initalized some char variables to represent the collision checks for the walls and the block.
+	
+	Next, I used a while loop to run the constant checks for a collision with any of the four walls, and if there was a collision, then drawing the block in the new position based on its velocity. At the bottom of my code, is where I determine if the block has collided with a wall of the screen and what to return to produce the correct results in the while loop above (aka where to draw the new block and, it's new velocity). 
+	
+	This functionality was similar to an assignment we had done, so the only problem I ran into, was slowing the block down enough for its collisions and movements to be visible. In order to do this,  I had to add a delay_cycles () command to the beginning of the while loop. I played around with the amount to delay it by, and finally decided that 2000000 cycles produced a good result. 
+	
+	I demonstrated B functionality to Capt Trimble on Thursday 23 OCT 14. 
