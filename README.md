@@ -17,9 +17,13 @@ C - "Etch-a-Sketch and Pong"
   The only change I had to make to the drawBlock subroutine was add another input for the color. I pushed R14 onto the stack in order to account for the third input. That code is shown below: 
   
 drawBlock:
+
 	push	R5
+
 	push	R12					; y input
+	
 	push	R13					; x input
+	
 	push 	R14					; color input
 
 	
