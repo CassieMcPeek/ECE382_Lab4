@@ -16,7 +16,7 @@ C - "Etch-a-Sketch and Pong"
   
   The only change I had to make to the drawBlock subroutine was add another input for the color. I pushed R14 onto the stack in order to account for the third input. That code is shown below: 
   
-  
+...  
 drawBlock:
 	push	R5
 	push	R12					; y input
@@ -45,7 +45,7 @@ loopdB:
 	
   
   I did run into a slight issue because I popped the registers off the stack in the wrong order at first, but once I fixed that, I didn't have any more issues with the nokia.asm code. Once I had the assembly code part working, I moved onto the lab4.c file and began fixing that. The first thing I did was define another unsigned char variable, color. I also initalized the variable color to 0xFF, so the block would start out filled. I had to make sure that everywhere the drawBlock subroutine was called, I added the third variable to it, color. The last thing I did, was add an else if statement to account for the Auxiliary button that would toggle the paint brush between clear and filled. This code is shown below:
-  
+ ... 
  { 
   else if (AUX_BUTTON == 0){		// aux button press check to change color of square
 				  while(AUX_BUTTON == 0);
