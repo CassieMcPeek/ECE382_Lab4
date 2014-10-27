@@ -16,41 +16,21 @@ C - "Etch-a-Sketch and Pong"
   
   The only change I had to make to the drawBlock subroutine was add another input for the color. I pushed R14 onto the stack in order to account for the third input. That code is shown below: 
   
-...  
 drawBlock:
 	push	R5
 	push	R12					; y input
 	push	R13					; x input
 	push 	R14					; color input
 
-	rla.w	R13					; the column address needs multiplied
-	rla.w	R13					; by 8in order to convert it into a
-	rla.w	R13					; pixel address.
-	call	#setAddress				; move cursor to upper left corner of block
-
-	mov	#1, R12
-	mov	R14, R13
-	mov.w	#0x08, R5				; loop all 8 pixel columns
-loopdB:
-	call	#writeNokiaByte				; draw the pixels
-	dec.w	R5
-	jnz	loopdB
-
-	pop	R14
-	pop	R13
-	pop	R12
-	pop	R5
-
-	ret						; return whence you came
 	
   
   I did run into a slight issue because I popped the registers off the stack in the wrong order at first, but once I fixed that, I didn't have any more issues with the nokia.asm code. Once I had the assembly code part working, I moved onto the lab4.c file and began fixing that. The first thing I did was define another unsigned char variable, color. I also initalized the variable color to 0xFF, so the block would start out filled. I had to make sure that everywhere the drawBlock subroutine was called, I added the third variable to it, color. The last thing I did, was add an else if statement to account for the Auxiliary button that would toggle the paint brush between clear and filled. This code is shown below:
- ... 
- { 
-  else if (AUX_BUTTON == 0){		// aux button press check to change color of square
-				  while(AUX_BUTTON == 0);
-				  color = ~color;
- }
+
+
+ else if (AUX_BUTTON == 0){		// aux button press check to change color of square
+	while(AUX_BUTTON == 0);
+	color = ~color;
+
  
  
  When I tested this code, it worked in the sense that it moved the block around the screen, and changed the block from beign filled in, to being clear based on the pressing of the auxiliary button. The one thing that I missed, that Capt Trimble pointed out when I first demoed to her, was that it did not the screen did not fill in as the block was drawn, like an etch-a-sketch. This was an easy fix, all I had to do was comment out the cleardisplay() command within the while loop. Once I fixed that, I was able to complete the required functionality. I demonstrated the required functionality for Capt Trimble on Thursday, 23 OCT 2014. 
