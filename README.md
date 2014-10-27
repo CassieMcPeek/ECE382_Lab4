@@ -32,7 +32,9 @@ drawBlock:
 
 
  else if (AUX_BUTTON == 0){		// aux button press check to change color of square
+ 
 	while(AUX_BUTTON == 0);
+	
 	color = ~color;
 
  
